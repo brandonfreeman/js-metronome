@@ -288,7 +288,13 @@
     });
 
     bottomSignatureInput.addEventListener('input', updateNoteImage);
-    tempoInput.addEventListener('input', startMetronome); // Update the tempo when the input field changes
+    
+    tempoInput.addEventListener('input', (event) => {
+      if (event.originalEvent instanceof KeyboardEvent) {
+        startMetronome();
+        }
+    });
+
     gainSlider.addEventListener('input', () => {
         if (gainNode) {
             gainNode.gain.value = gainSlider.value;
